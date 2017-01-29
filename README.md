@@ -79,12 +79,12 @@ module.exports = router;
 
 ## Can publish to any endpoint, from anywhere.
 
-**server.js**
+**server.js** - create here
 ```
 var longpoll = require("express-longpoll")(app);
 longpoll.create("/poll");
 ```
-**route.js**
+**route.js** - use here
 ```
 var longpoll = require("express-longpoll")(router);
 // Can publish to any endpoint
