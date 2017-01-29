@@ -58,6 +58,39 @@ longpoll.publish("/poll", { hello: "Hello World!" });
 longpoll.publish("/poll", jsonData);
 ```
 
+## Works with Routers
+```
+var express = require('express');
+var router = express.Router();
+// with router
+var longpoll = require("express-longpoll")(router);
+
+longpoll.create("/routerpoll");
+
+router.get("/", (req, res) => {
+    longpoll.publish("/routerpoll", {
+        text: "Some data"
+    });
+    res.send("Sent data!");
+});
+
+module.exports = router;
+```
+
+## Can publish to any endpoint, from anywhere.
+
+**server.js**
+```
+var longpoll = require("express-longpoll")(app);
+longpoll.create("/poll");
+```
+**route.js**
+```
+var longpoll = require("express-longpoll")(router);
+// Can publish to any endpoint
+longpoll.publish("/poll");
+```
+
 ## Using Promises
 
 ```
