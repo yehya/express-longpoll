@@ -12,7 +12,7 @@ Sets up basic long poll with subscriibe and publish functionality.
 
 ### Usage
 
-**Quick code**  
+**Quick-start code**  
 ```
 var express = require('express');
 var app = express();
