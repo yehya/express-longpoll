@@ -1,0 +1,11 @@
+{
+  "name": "express-longpoll",
+  "version": "0.0.1",
+  "description": "Easy long polling for express.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Yehya Awad <yehyaawad@hotmail.com>",
+  "license": "ISC"
+}
