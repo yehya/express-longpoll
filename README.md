@@ -1,4 +1,5 @@
 # express-longpoll
+[![npm version](https://badge.fury.io/js/express-longpoll.svg)](https://badge.fury.io/js/express-longpoll)
 
 Lightweight long polling module for express.js
 
