@@ -3,9 +3,13 @@
   "version": "0.0.1",
   "description": "Easy long polling for express.",
   "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yehya/express-longpoll.git"
+  }
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Yehya Awad <yehyaawad@hotmail.com>",
+  "author": "Yehya Awad <yehyaawad@hotmail.com> (http://www.yehyaawad.com/)",
   "license": "ISC"
 }
