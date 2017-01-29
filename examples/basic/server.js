@@ -7,8 +7,8 @@ app.use((req, res, next) => {
     next();
 });
 
-longpoll.subscribe("/poll");
-longpoll.subscribe("/poll2");
+longpoll.create("/poll");
+longpoll.create("/poll2");
 
 app.get('/', function(req, res) {
     longpoll.publish("/poll", {

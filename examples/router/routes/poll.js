@@ -4,7 +4,7 @@ var router = express.Router();
 // Can use routers as well
 const longpoll = require("../../../index.js")(router);
 
-longpoll.subscribe("/routerpoll");
+longpoll.create("/routerpoll");
 
 router.get("/", (req, res) => {
     longpoll.publish("/routerpoll", {

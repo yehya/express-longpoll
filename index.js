@@ -7,7 +7,7 @@ var longpoll = function(app) {
     if (!global.express_longpoll_emitters) {
         global.express_longpoll_emitters = {};
     }
-    
+
     var _newDispatcher = function(url, opts) {
         var dispatcher = new EventEmitter();
         if (opts) {
@@ -20,15 +20,21 @@ var longpoll = function(app) {
     };
 
     var exportObj = {
-        subscribe: function(url, opts) {
-            var dispatcher = _newDispatcher(url, opts);
-            _app.get(url, (req, res) => {
-                var sub = function(res) {
-                    dispatcher.once('message', function(data) {
-                        res.json(data)
-                    });
+        create: function(url, opts) {
+            return new Promise(function(resolve, reject) {
+                if (global.express_longpoll_emitters[url]) {
+                    return reject("URL already in use: " + url);
                 }
-                sub(res)
+                var dispatcher = _newDispatcher(url, opts);
+                _app.get(url, (req, res) => {
+                    var sub = function(res) {
+                        dispatcher.once('message', function(data) {
+                            res.json(data)
+                        });
+                    }
+                    sub(res)
+                });
+                resolve();
             });
         },
         publish: function(url, data) {
