@@ -5,7 +5,7 @@
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/yehya/express-longpoll.git"
+    "url": "git+https://github.com/yehya/express-longpoll.git"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
