@@ -14,7 +14,7 @@ Sets up basic long poll with subscriibe and publish functionality.
 ### Usage
 
 **Quick-start code**  
-```
+```javascript
 var express = require('express');
 var app = express();
 var longpoll = require("express-longpoll")(app);
@@ -35,7 +35,7 @@ longpoll.publish("/poll", data);
 ###**longpoll.create(url, [options])**  
   Sets up an express endpoint using the URL provided.
 
-```
+```javascript
 var express = require('express');
 var app = express();
 var longpoll = require("express-longpoll")(app);
@@ -47,7 +47,7 @@ longpoll.create("/poll2", { maxListeners: 100 }); // set max listeners
 ###**longpoll.publish(url, data)**  
   Publishes ```data``` to all listeners on the ```url``` provided.
 
-```
+```javascript
 var express = require('express');
 var app = express();
 var longpoll = require("express-longpoll")(app);
@@ -60,7 +60,7 @@ longpoll.publish("/poll", jsonData);
 ```
 
 ## Works with Routers
-```
+```javascript
 var express = require('express');
 var router = express.Router();
 // with router
@@ -81,12 +81,12 @@ module.exports = router;
 ## Can publish to any endpoint, from anywhere.
 
 **server.js** - create here
-```
+```javascript
 var longpoll = require("express-longpoll")(app);
 longpoll.create("/poll");
 ```
 **route.js** - use here
-```
+```javascript
 var longpoll = require("express-longpoll")(router);
 // Can publish to any endpoint
 longpoll.publish("/poll");
@@ -94,7 +94,7 @@ longpoll.publish("/poll");
 
 ## Using Promises
 
-```
+```javascript
 longpoll.create("/poll")
   .then(() => {
     console.log("Created /poll");
@@ -115,7 +115,7 @@ longpoll.publish("/poll", data)
 ## Sample clientside code to subscribe to the longpoll
 
 ###**Client using jQuery**
-```
+```javascript
 var subscribe = function(url, cb) {
         $.ajax({
             method: 'GET',
