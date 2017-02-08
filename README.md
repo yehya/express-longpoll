@@ -13,6 +13,15 @@ Sets up basic long poll with subscriibe and publish functionality.
 
 ### Usage
 
+**Basic initalization**
+```javascript
+var express = require('express');
+var app = express();
+var longpoll = require("express-longpoll")(app)
+// You can also enable debug flag for debug messages
+var longpollWithDebug = require("express-longpoll")(app, { DEBUG: true });
+```
+
 **Quick-start code**  
 ```javascript
 var express = require('express');
@@ -29,19 +38,34 @@ app.listen(8080, function() {
 var data = { text: "Some data" };
 
 // Publishes data to all clients long polling /poll endpoint
+// You need to call this AFTER you make a GET request to /poll
 longpoll.publish("/poll", data);
+
+// Publish every 5 seconds
+setInterval(function () { 
+    longpoll.publish("/poll", data);
+}, 5000);
 ```
 
 ###**longpoll.create(url, [options])**  
   Sets up an express endpoint using the URL provided.
 
 ```javascript
-var express = require('express');
-var app = express();
 var longpoll = require("express-longpoll")(app);
 
 longpoll.create("/poll");
 longpoll.create("/poll2", { maxListeners: 100 }); // set max listeners
+```
+
+###**longpoll.create(url, middleware, [options])**  
+  Set up an express endpoint using the URL provided, and use middleware.
+```javascript
+var longpoll = require("express-longpoll")(app);
+
+longpoll.create("/poll", function (req,res,next) {
+    // do something
+    next();
+});
 ```
 
 ###**longpoll.publish(url, data)**  
@@ -58,6 +82,9 @@ longpoll.publish("/poll", {});
 longpoll.publish("/poll", { hello: "Hello World!" });
 longpoll.publish("/poll", jsonData);
 ```
+
+###**longpoll.publishToId(url, id, data)**
+    Publish data to a specific request. See [the basic example](./examples/basic) on how to use this effectively.
 
 ## Works with Routers
 ```javascript
