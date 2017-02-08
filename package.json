@@ -11,5 +11,9 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Yehya Awad <yehyaawad@hotmail.com> (http://www.yehyaawad.com/)",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "eventemitter2": "3.0.0",
+    "lodash": "4.17.4"
+  }
 }
