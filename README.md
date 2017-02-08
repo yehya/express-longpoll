@@ -83,8 +83,8 @@ longpoll.publish("/poll", { hello: "Hello World!" });
 longpoll.publish("/poll", jsonData);
 ```
 
-###**longpoll.publishToId(url, id, data)**
-    Publish data to a specific request. See [the basic example](./examples/basic) on how to use this effectively.
+###**longpoll.publishToId(url, id, data)**  
+Publish data to a specific request. See [the basic example](./examples/basic) on how to use this effectively.
 
 ## Works with Routers
 ```javascript
