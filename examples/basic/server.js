@@ -1,14 +1,19 @@
 var express = require('express');
 var app = express();
-const longpoll = require("../../index.js")(app);
+const longpoll = require("../../index.js")(app, {
+    DEBUG: true
+});
 
 app.use((req, res, next) => {
-    // console.log("URL: " + req.url);
+    console.log("URL: " + req.url);
     next();
 });
 
+// Simple general longpoll
 longpoll.create("/poll2");
 
+// This longpoll can publish data to specific users with different ID's
+// It requires middleware that places the user ID in req.id
 longpoll.create("/poll/:id", (req,res, next) => {
     req.id = req.params.id;
     next();

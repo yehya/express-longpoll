@@ -29,7 +29,7 @@ var longpoll = function(app, opts) {
             return n;
         });
 
-        console.log(args.join(" "));
+        console.log("[express-longpoll]", args.join(" "));
     }
 
     var _app = app;
