@@ -7,7 +7,7 @@ var longpoll = function(app, opts) {
     // Default Config
     var config = {
         DEBUG: false,
-        eventEmitter: {
+        events: {
             maxListeners: 10
         }
     };
