@@ -5,7 +5,7 @@ Lightweight long polling module for express.js
 
 ### Description
 
-Sets up basic long poll with subscriibe and publish functionality.
+Sets up basic long poll with subscribe and publish functionality.
 
 ### Install
 
