@@ -3,7 +3,7 @@ var Promise = require("bluebird");
 var _ = require("lodash");
 
 // Eliminate (node) warning: possible EventEmitter memory leak detected. 11 listeners added. Use emitter.setMaxListeners() to increase limit.
-EventEmitter2..setMaxListeners(50);
+EventEmitter2.setMaxListeners(50);
 
 var longpoll = function(app, opts) {
 
