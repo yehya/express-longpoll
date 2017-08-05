@@ -163,7 +163,7 @@ longpoll.publish("/poll", data)
 
 ## Sample clientside code to subscribe to the longpoll
 
-###**Client using jQuery**
+###Client using jQuery
 ```javascript
 var subscribe = function(url, cb) {
         $.ajax({
