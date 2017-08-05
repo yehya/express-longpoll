@@ -23,6 +23,8 @@ var longpollWithDebug = require("express-longpoll")(app, { DEBUG: true });
 ```
 
 **Quick-start code**  
+
+Server - server.js
 ```javascript
 var express = require('express');
 var app = express();
@@ -45,6 +47,26 @@ longpoll.publish("/poll", data);
 setInterval(function () { 
     longpoll.publish("/poll", data);
 }, 5000);
+```
+
+Client - index.js (with jQuery)
+```javascript
+var poll = function () {
+    $.ajax({
+       url: "localhost:8080/poll",
+       success: function(data){
+           console.log(data); // { text: "Some data" } -> will be printed in your browser console every 5 seconds
+           poll();
+       },
+       error: function() {
+           poll();
+       },
+       timeout: 30000 // 30 seconds
+    });
+};
+
+// Make sure to call it once first,
+poll();
 ```
 
 ###**longpoll.create(url, [options])**  
