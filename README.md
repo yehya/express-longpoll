@@ -1,4 +1,6 @@
 # express-longpoll
+
+[![Build Status](https://travis-ci.org/yehya/express-longpoll.svg?branch=master)](https://travis-ci.org/yehya/express-longpoll)
 [![npm version](https://badge.fury.io/js/express-longpoll.svg)](https://badge.fury.io/js/express-longpoll)
 
 Lightweight long polling module for express.js
