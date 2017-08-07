@@ -1,4 +1,4 @@
-# express-longpoll
+<img src="http://i.imgur.com/9xty9ps.png" width="100%"/>
 
 [![Build Status](https://travis-ci.org/yehya/express-longpoll.svg?branch=master)](https://travis-ci.org/yehya/express-longpoll)
 [![npm version](https://badge.fury.io/js/express-longpoll.svg)](https://badge.fury.io/js/express-longpoll)
