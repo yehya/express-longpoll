@@ -8,7 +8,7 @@ var longpoll = function(app, opts) {
     var config = {
         DEBUG: false,
         events: {
-            maxListeners: 10
+            maxListeners: 0 // unlimited
         }
     };
 

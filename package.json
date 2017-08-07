@@ -1,6 +1,6 @@
 {
   "name": "express-longpoll",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Easy long polling for express.",
   "main": "index.js",
   "repository": {
@@ -8,12 +8,20 @@
     "url": "git+https://github.com/yehya/express-longpoll.git"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha --timeout 5000",
+    "start": "SET NODE_ENV=dev && node server.js"
   },
   "author": "Yehya Awad <yehyaawad@hotmail.com> (http://www.yehyaawad.com/)",
   "license": "ISC",
   "dependencies": {
+    "bluebird": "^3.5.0",
     "eventemitter2": "3.0.0",
     "lodash": "4.17.4"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "chai-http": "^2.0.1",
+    "mocha": "^2.4.5",
+    "express": "^4.14.1"
   }
 }
