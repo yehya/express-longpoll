@@ -22,6 +22,12 @@ var app = express();
 var longpoll = require("express-longpoll")(app)
 // You can also enable debug flag for debug messages
 var longpollWithDebug = require("express-longpoll")(app, { DEBUG: true });
+// You can also specify a function that is called when a new longpoll request is made
+var longpollWithDebugAndCallback = require("express-longpoll")(app, { DEBUG: true, 
+    subscriberCallback: function (id){ 
+      console.log (`New subscriber with id: ${id}`);
+    } 
+  });
 ```
 
 **Quick-start code**  
