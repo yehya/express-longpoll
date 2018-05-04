@@ -144,7 +144,7 @@ var longpoll = function(app, opts) {
 
                     // New subscriber callback
                     if (config.subscriberCallback){
-                      config.subscriberCallback(req.id || null);
+                      config.subscriberCallback(req);
                     };
                 });
                 resolve();
