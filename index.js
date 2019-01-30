@@ -125,7 +125,7 @@ var longpoll = function(app, opts) {
                         eventId = eventId + "." + req.id;
                         // Clear all previous events for the ID, we only need one
                         log("Old Events cleared: ", url, eventId);
-                        dispatcher.removeAllListeners([eventId]);
+                        dispatcher.removeAllListeners(eventId);
                     }
 
                     // Method that Creates event listener
