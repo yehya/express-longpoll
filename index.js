@@ -73,7 +73,7 @@ var longpoll = function(app, opts) {
 
         // Create a new longpoll
         create: function(url, middleware, opts) {
-            if (typeof middleware === "function") {
+            if (typeof middleware === "function" || Array.isArray(middleware)) {
                 return this._createWithId(url, middleware, opts);
             }
             else {
