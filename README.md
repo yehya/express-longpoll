@@ -71,7 +71,7 @@ var poll = function () {
 poll();
 ```
 
-###**longpoll.create(url, [options])**  
+### **longpoll.create(url, [options])**  
   Sets up an express endpoint using the URL provided.
 
 ```javascript
@@ -81,7 +81,7 @@ longpoll.create("/poll");
 longpoll.create("/poll2", { maxListeners: 100 }); // set max listeners
 ```
 
-###**longpoll.create(url, middleware, [options])**  
+### **longpoll.create(url, middleware, [options])**  
   Set up an express endpoint using the URL provided, and use middleware.
 ```javascript
 var longpoll = require("express-longpoll")(app);
@@ -92,7 +92,7 @@ longpoll.create("/poll", function (req,res,next) {
 });
 ```
 
-###**longpoll.publish(url, data)**  
+### **longpoll.publish(url, data)**  
   Publishes ```data``` to all listeners on the ```url``` provided.
 
 ```javascript
@@ -107,7 +107,7 @@ longpoll.publish("/poll", { hello: "Hello World!" });
 longpoll.publish("/poll", jsonData);
 ```
 
-###**longpoll.publishToId(url, id, data)**  
+### **longpoll.publishToId(url, id, data)**  
 Publish data to a specific request. See [the basic example](./examples/basic) on how to use this effectively.
 
 ## Works with Routers
@@ -165,7 +165,7 @@ longpoll.publish("/poll", data)
 
 ## Sample clientside code to subscribe to the longpoll
 
-###Client using jQuery
+### Client using jQuery
 ```javascript
 var subscribe = function(url, cb) {
         $.ajax({
