@@ -7,6 +7,7 @@ var longpoll = function(app, opts) {
     // Default Config
     var config = {
         DEBUG: false,
+        subscriberCallback: null,
         events: {
             maxListeners: 0 // unlimited
         }
@@ -140,6 +141,11 @@ var longpoll = function(app, opts) {
 
                     // Create it
                     sub(res);
+
+                    // New subscriber callback
+                    if (config.subscriberCallback){
+                      config.subscriberCallback(req);
+                    };
                 });
                 resolve();
             });
