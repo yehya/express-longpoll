@@ -1,9 +1,8 @@
-var EventEmitter2 = require('eventemitter2').EventEmitter2;
+var EventEmitter2 = require("eventemitter2").EventEmitter2;
 var Promise = require("bluebird");
 var _ = require("lodash");
 
-var longpoll = function(app, opts) {
-
+var longpoll = function (app, opts) {
     // Default Config
     var config = {
         DEBUG: false,
@@ -16,9 +15,9 @@ var longpoll = function(app, opts) {
     if (opts) {
         config = _.assign(config, opts);
     }
-    
+
     // For logging messages
-    var log = function() {
+    var log = function () {
         if (!config.DEBUG) return;
         var args = Array.prototype.slice.call(arguments, 0);
 
@@ -30,83 +29,84 @@ var longpoll = function(app, opts) {
         });
 
         console.log("[express-longpoll]", args.join(" "));
-    }
+    };
 
     var _app = app;
     if (!global.express_longpoll_emitters) {
         global.express_longpoll_emitters = {};
     }
 
-    var _newDispatcher = function(url, opts) {
-        
+    var _newDispatcher = function (url, opts) {
         // Init EventEmitter
         var dispatcher = new EventEmitter2({
             wildcard: true,
             delimiter: "."
         });
-        
+
         // Log on every event emitted
         dispatcher.onAny((event, value) => {
             log("Event emitted:", url + ":", event, value);
         });
-        
-        if (opts) {
-            if (opts.maxListeners && opts.maxListeners > 0) {
-                dispatcher.setMaxListeners(opts.maxListeners);
-            }
+
+        // Set maxListeners to prevent memory leak warnings
+        // If opts.maxListeners is provided, use it
+        // Otherwise use config default (0 = unlimited)
+        var maxListeners = config.events.maxListeners;
+        if (opts && typeof opts.maxListeners !== "undefined") {
+            maxListeners = opts.maxListeners;
         }
-        
+
+        // 0 means unlimited, so set to 0 (which disables the warning)
+        dispatcher.setMaxListeners(maxListeners);
+
         global.express_longpoll_emitters[url] = dispatcher;
         return dispatcher;
     };
 
     var exportObj = {
         // Has middleware that assigns a req.id to emit events at specific users only
-        _createWithId: function(url, middleware, opts) {
+        _createWithId: function (url, middleware, opts) {
             return this._setupListener(url, "longpoll", middleware, opts);
         },
 
         // method that sets up ID
-        use: function(middleware) {
+        use: function (middleware) {
             _app.use(middleware);
         },
 
         // Create a new longpoll
-        create: function(url, middleware, opts) {
+        create: function (url, middleware, opts) {
             if (typeof middleware === "function" || Array.isArray(middleware)) {
                 return this._createWithId(url, middleware, opts);
-            }
-            else {
+            } else {
                 opts = middleware;
             }
             return this._setupListener(url, "longpoll", null, opts);
         },
-        
+
         // Publishes to everyone listening to this long poll
-        publish: function(url, data) {
-            return new Promise(function(resolve, reject) {
+        publish: function (url, data) {
+            return new Promise(function (resolve, reject) {
                 if (global.express_longpoll_emitters[url]) {
-                    global.express_longpoll_emitters[url].emit('longpoll.**', data);
+                    global.express_longpoll_emitters[url].emit("longpoll.**", data);
                     resolve();
-                }
-                else {
+                } else {
                     reject("Longpoll with the provided URL does not exist: " + url);
                 }
             });
         },
-        
+
         // Pushes data to listeners with an extra ID
-        publishToId: function(url, id, data) {
+        publishToId: function (url, id, data) {
             return this._emit(url, "longpoll." + id, data);
         },
-        
+
         // Setup the longpoll listener in an express .get route
-        _setupListener: function(url, event, middleware, opts) {
+        _setupListener: function (url, event, middleware, opts) {
             if (middleware == null) {
                 middleware = (req, res, next) => next();
             }
             return new Promise((resolve, reject) => {
-
                 // Check if longpoll for URL already exists
                 if (global.express_longpoll_emitters[url]) {
                     return reject("URL already in use: " + url);
@@ -129,14 +129,14 @@ var longpoll = function(app, opts) {
                     }
 
                     // Method that Creates event listener
-                    var sub = function(res) {
+                    var sub = function (res) {
                         log("Event listener registered: ", req.url + ":", eventId);
 
-                        dispatcher.once(eventId, function(data) {
+                        dispatcher.once(eventId, function (data) {
                             log("Event listener triggered: ", req.url, eventId, "Data: ", data);
                             res.json(data);
                         });
-                    }
+                    };
 
                     // Create it
                     sub(res);
@@ -144,21 +144,19 @@ var longpoll = function(app, opts) {
                 resolve();
             });
         },
-        
+
         // Emits an event to an event listener
-        _emit: function(url, event, data) {
-            return new Promise(function(resolve, reject) {
+        _emit: function (url, event, data) {
+            return new Promise(function (resolve, reject) {
                 if (global.express_longpoll_emitters[url]) {
                     global.express_longpoll_emitters[url].emit(event, data);
                     resolve();
-                }
-                else {
+                } else {
                     reject("Subscription with the provided URL does not exist: " + url);
                 }
             });
         }
-        
-    }
+    };
 
     return exportObj;
 };

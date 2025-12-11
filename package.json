@@ -1,46 +1,46 @@
 {
-	"name": "express-longpoll",
-	"version": "1.0.0",
-	"description": "Lightweight long polling for express.js with TypeScript support",
-	"main": "index.js",
-	"types": "index.d.ts",
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/yehya/express-longpoll.git"
-	},
-	"scripts": {
-		"test": "mocha --timeout 5000 --exit",
-		"test:watch": "mocha --timeout 5000 --watch",
-		"lint": "eslint .",
-		"lint:fix": "eslint . --fix",
-		"format": "prettier --write \"**/*.{js,json,md}\"",
-		"start": "SET NODE_ENV=dev && node server.js"
-	},
-	"keywords": [
-		"express",
-		"longpoll",
-		"long-polling",
-		"realtime",
-		"comet",
-		"typescript"
-	],
-	"author": "Yehya Awad <yehyaawad@hotmail.com> (http://www.yehyaawad.com/)",
-	"license": "ISC",
-	"engines": {
-		"node": ">=14.0.0"
-	},
-	"dependencies": {
-		"bluebird": "^3.5.0",
-		"eventemitter2": "^5.0.1",
-		"lodash": ">=4.17.21"
-	},
-	"devDependencies": {
-		"@types/express": "^4.17.21",
-		"chai": "^4.3.10",
-		"chai-http": "^4.4.0",
-		"eslint": "^8.57.0",
-		"express": "^4.18.2",
-		"mocha": "^10.2.0",
-		"prettier": "^3.1.1"
-	}
+    "name": "express-longpoll",
+    "version": "1.0.1",
+    "description": "Lightweight long polling for express.js with TypeScript support",
+    "main": "index.js",
+    "types": "index.d.ts",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/yehya/express-longpoll.git"
+    },
+    "scripts": {
+        "test": "mocha --timeout 5000 --exit",
+        "test:watch": "mocha --timeout 5000 --watch",
+        "lint": "eslint .",
+        "lint:fix": "eslint . --fix",
+        "format": "prettier --write \"**/*.{js,json,md}\"",
+        "start": "SET NODE_ENV=dev && node server.js"
+    },
+    "keywords": [
+        "express",
+        "longpoll",
+        "long-polling",
+        "realtime",
+        "comet",
+        "typescript"
+    ],
+    "author": "Yehya Awad <yehyaawad@hotmail.com> (http://www.yehyaawad.com/)",
+    "license": "ISC",
+    "engines": {
+        "node": ">=14.0.0"
+    },
+    "dependencies": {
+        "bluebird": "^3.5.0",
+        "eventemitter2": "^5.0.1",
+        "lodash": ">=4.17.21"
+    },
+    "devDependencies": {
+        "@types/express": "^4.17.21",
+        "chai": "^4.3.10",
+        "chai-http": "^4.4.0",
+        "eslint": "^8.57.0",
+        "express": "^4.18.2",
+        "mocha": "^10.2.0",
+        "prettier": "^3.1.1"
+    }
 }

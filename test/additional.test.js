@@ -158,12 +158,20 @@ describe("express-longpoll - Additional Tests", function () {
         let app, server, longpoll;
 
         beforeEach(() => {
+            // Clean up global emitters
+            if (global.express_longpoll_emitters) {
+                delete global.express_longpoll_emitters["/user-specific"];
+            }
             app = express();
             longpoll = require("../index.js")(app);
             server = app.listen(0);
         });
 
         afterEach((done) => {
+            // Clean up
+            if (global.express_longpoll_emitters) {
+                delete global.express_longpoll_emitters["/user-specific"];
+            }
             server.close(done);
         });
 

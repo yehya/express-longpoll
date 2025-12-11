@@ -114,8 +114,9 @@ var poll = function () {
 poll();
 ```
 
-###**longpoll.create(url, [options])**  
- Sets up an express endpoint using the URL provided.
+### **longpoll.create(url, [options])**
+
+Sets up an express endpoint using the URL provided.
 
 ```javascript
 var longpoll = require("express-longpoll")(app);
@@ -124,8 +125,13 @@ longpoll.create("/poll");
 longpoll.create("/poll2", { maxListeners: 100 }); // set max listeners
 ```
 
-###**longpoll.create(url, middleware, [options])**  
- Set up an express endpoint using the URL provided, and use middleware.
+**Options:**
+
+- `maxListeners` (number): Maximum number of listeners. Default: 0 (unlimited, disables EventEmitter warnings). Set to a specific number if you want to limit concurrent connections. Fixes Issue #12.
+
+### **longpoll.create(url, middleware, [options])**
+
+Set up an express endpoint using the URL provided, and use middleware.
 
 ```javascript
 var longpoll = require("express-longpoll")(app);
@@ -136,8 +142,9 @@ longpoll.create("/poll", function (req, res, next) {
 });
 ```
 
-###**longpoll.publish(url, data)**  
- Publishes `data` to all listeners on the `url` provided.
+### **longpoll.publish(url, data)**
+
+Publishes `data` to all listeners on the `url` provided.
 
 ```javascript
 var express = require("express");
@@ -151,7 +158,8 @@ longpoll.publish("/poll", { hello: "Hello World!" });
 longpoll.publish("/poll", jsonData);
 ```
 
-###**longpoll.publishToId(url, id, data)**  
+### **longpoll.publishToId(url, id, data)**
+
 Publish data to a specific request. See [the basic example](./examples/basic) on how to use this effectively.
 
 ## Works with Routers
@@ -264,7 +272,7 @@ Creates a long-poll endpoint.
 
 **Options:**
 
-- `maxListeners` (number): Maximum number of listeners to prevent memory leaks. Default: 0 (unlimited)
+- `maxListeners` (number): Maximum number of listeners. Default: 0 (unlimited, disables EventEmitter warnings). Set to a specific number if you want to limit concurrent connections. Fixes Issue #12.
 
 **Returns:** `Promise<void>`
 
