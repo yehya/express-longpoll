@@ -1,6 +1,6 @@
 {
     "name": "express-longpoll",
-    "version": "1.0.1",
+    "version": "1.0.3",
     "description": "Lightweight long polling for express.js with TypeScript support",
     "main": "index.js",
     "types": "index.d.ts",
