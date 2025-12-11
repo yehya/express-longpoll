@@ -1,0 +1,21 @@
+{
+	"name": "collaborative-mouse-tracker",
+	"version": "1.0.0",
+	"description": "Real-time collaborative mouse tracker demo using express-longpoll",
+	"main": "server.js",
+	"scripts": {
+		"start": "node server.js"
+	},
+	"keywords": [
+		"express-longpoll",
+		"demo",
+		"realtime",
+		"collaborative"
+	],
+	"author": "Yehya Awad",
+	"license": "ISC",
+	"dependencies": {
+		"express": "^4.18.2",
+		"express-longpoll": "^1.0.0"
+	}
+}

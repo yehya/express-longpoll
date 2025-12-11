@@ -1,2 +1,8 @@
 examples
 .git
+test
+.github
+.eslintrc.js
+.prettierrc
+*.test.js
+.travis.yml

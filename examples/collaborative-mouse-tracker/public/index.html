@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>🖱️ Collaborative Mouse Tracker</title>
+		<link rel="stylesheet" href="styles.css" />
+	</head>
+	<body>
+		<div class="grid-background"></div>
+
+		<div class="demo-modal" id="demoModal">
+			<div class="demo-content">
+				<div class="emoji">🖱️✨</div>
+				<h2>Welcome to the Demo!</h2>
+
+				<div class="demo-steps">
+					<div class="demo-step">
+						<div class="step-number">1</div>
+						<div class="step-text">
+							<strong>Open a second browser tab</strong> with this same URL
+							side-by-side with this one
+						</div>
+					</div>
+
+					<div class="demo-step">
+						<div class="step-number">2</div>
+						<div class="step-text">
+							<strong>Change your cursor color</strong> in each tab (bottom-left
+							panel) so you can tell them apart
+						</div>
+					</div>
+
+					<div class="demo-step">
+						<div class="step-number">3</div>
+						<div class="step-text">
+							<strong>Move your mouse</strong> in one tab and watch it appear in
+							the other tab in real-time!
+						</div>
+					</div>
+				</div>
+
+				<div class="demo-tip">
+					💡 <strong>Tip:</strong> Use <strong>Cmd+T</strong> (Mac) or
+					<strong>Ctrl+T</strong> (Windows) to open a new tab, then arrange them
+					side-by-side
+				</div>
+
+				<button class="demo-button" onclick="closeDemoModal()">
+					Got it! Let's see the magic ✨
+				</button>
+			</div>
+		</div>
+
+		<div class="header">
+			<div class="header-content">
+				<h1>
+					<span>🖱️</span>
+					<span>Collaborative Mouse Tracker</span>
+				</h1>
+				<div class="stats">
+					<div class="stat-item">
+						<span class="stat-dot"></span>
+						<span>Live</span>
+					</div>
+					<div class="stat-item">
+						<span id="cursorCount">0</span>
+						<span>cursors</span>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="settings-panel">
+			<div class="settings-title">Your Cursor Settings</div>
+			<div class="form-group">
+				<label for="nameInput">Display Name</label>
+				<input
+					type="text"
+					id="nameInput"
+					placeholder="Anonymous"
+					maxlength="20"
+				/>
+			</div>
+			<div class="form-group">
+				<label>Cursor Color</label>
+				<div class="color-picker-group">
+					<input type="color" id="colorInput" value="#6366f1" />
+					<div class="color-preview" id="colorPreview">#6366f1</div>
+				</div>
+			</div>
+			<button class="help-button" onclick="showDemoModal()">
+				📖 Show Instructions
+			</button>
+		</div>
+
+		<div id="cursorsContainer"></div>
+
+		<script src="app.js"></script>
+	</body>
+</html>
