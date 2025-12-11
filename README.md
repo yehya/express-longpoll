@@ -215,7 +215,7 @@ longpoll
 
 ## Sample clientside code to subscribe to the longpoll
 
-###Client using jQuery
+### Client using jQuery
 
 ```javascript
 var subscribe = function (url, cb) {
@@ -279,6 +279,55 @@ Publishes data to all listeners on the endpoint.
 Publishes data to a specific listener by ID.
 
 **Returns:** `Promise<void>`
+
+## Testing
+
+express-longpoll has comprehensive test coverage:
+
+```bash
+npm test
+```
+
+**Test Results:**
+
+```
+  express-longpoll - Additional Tests
+    Error Handling
+      ✔ should reject when creating duplicate URL
+      ✔ should reject when publishing to non-existent URL
+      ✔ should reject when publishing to ID on non-existent URL
+    maxListeners Option
+      ✔ should set maxListeners when option is provided
+      ✔ should handle multiple concurrent connections with maxListeners
+    Middleware Support
+      ✔ should support middleware function
+      ✔ should support middleware with options
+    publishToId
+      ✔ should publish to specific user ID
+    Router Support
+      ✔ should work with Express Router
+    Promise API
+      ✔ should resolve promise on successful create
+      ✔ should resolve promise on successful publish
+      ✔ should support async/await syntax
+    Debug Mode
+      ✔ should enable debug logging when DEBUG is true
+      ✔ should not log when DEBUG is false
+    Data Types
+      ✔ should handle object data
+      ✔ should handle array data
+      ✔ should handle string data
+      ✔ should handle null data
+
+  express-longpoll
+    longpoll.create(url, data)
+      ✔ should create a .get express endpoint
+    longpoll.publish(url, data)
+      ✔ should publish data to all requests listening on a url
+      ✔ should publish data to all clients requests listening on a url
+
+  21 passing (5s)
+```
 
 ## Best Practices
 
