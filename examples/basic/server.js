@@ -1,7 +1,10 @@
 var express = require('express');
 var app = express();
 const longpoll = require("../../index.js")(app, {
-    DEBUG: true
+    DEBUG: true,
+    subscriberCallback: function (id) {
+      console.log(`Subscriber Callback with id: ${id}`);
+    }
 });
 
 app.use((req, res, next) => {
